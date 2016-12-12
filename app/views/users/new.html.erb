@@ -1,0 +1,11 @@
+<div class="container">
+	
+		<%= bootstrap_form_for(@user) do |user| %>
+			<%= user.text_field :first_name, placeholder: "First Name" %><br>
+			<%= user.text_field :last_name, placeholder: "Last Name"%><br>
+			<%= user.email_field :email, placeholder: "Email" %><br>
+			<%= user.password_field :password, placeholder: "Password" %><br>
+			<%= user.submit %>
+		<% end %>
+	
+</div>

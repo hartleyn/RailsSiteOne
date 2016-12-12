@@ -1,0 +1,32 @@
+<h1>This is the admin page.</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      
+      <th>Name</th>
+      <th>Email</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
+
+	<% @users.each do |x| %>	  	
+	    <tr>
+	      <td><%= x.first_name %> <%= x.last_name %></td>
+	      <td><%= x.email %></td>
+	      <td>
+	      	<%= x.role %>
+
+	      	<%= bootstrap_form_for(x, url: update_user_path(x.id)) do |y| %>
+	      		
+	      		<%= y.select :role, ["admin", "editor", "none"], { class: "selectpicker" } %>
+	      		<%= y.submit "Save Changes", class: "btn-submit" %>
+	      	<% end %>
+
+	      </td>
+	    </tr>
+	<% end %> 
+
+  </tbody>
+</table>

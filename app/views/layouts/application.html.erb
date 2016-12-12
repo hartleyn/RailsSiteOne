@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MySite</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<div class="container-fluid" id="site-container">
+
+  		<!-- NAV BAR -->
+	  	<nav class="navbar navbar-default">
+	      <div class="container">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="navbar-brand" href="#">My Rails App</a>
+	        </div>
+	        <div id="navbar" class="collapse navbar-collapse">
+
+	          <ul class="nav navbar-nav">
+	            <li><%= link_to "Home", home_path %></li>
+	            <li><%= link_to "About", about_path %></li>
+	            <li><%= link_to "Create Post", new_path %></li>
+	        
+
+	        
+	            <% if current_user -%>
+	            	<li>Hello, <%= current_user.first_name %></li> 
+				    <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+
+				    <% if current_user.admin? -%>
+				    	<li><%= link_to "Admin Tools", admin_page_path %></li>
+				    <% end -%>
+
+				<% else %>
+					<li><%= link_to "Sign Up", new_user_path %></li>
+	           		<li><%= link_to "Log In", create_session_path %></li>
+				<% end -%>
+			
+	          </ul>
+
+	        </div><!--/.nav-collapse -->
+	      </div>
+	    </nav>
+	    <!-- NAV BAR END -->
+
+    	<%= yield %>
+
+    </div><!-- CONTAINER COLLAPSE -->
+  </body>
+</html>

@@ -1,0 +1,16 @@
+<h1><%= @title %></h1>
+
+<% @posts.each do |post| %>
+	<div class="container">
+		<div class="posts">
+			<h2><%= post.title %></h2>
+			<p><%= post.body %></p>
+			<hr>
+			<%= link_to "Edit Post", edit_path(post), :class => "btn btn-default" %>
+			<%= link_to "Delete", post_path(post), 
+							method: :delete,
+							data: {confirm: 'Are you sure?'},
+							:class => "btn btn-danger" %>
+		</div>
+	</div>
+<% end %>
